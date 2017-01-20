@@ -1,6 +1,6 @@
 {
   "name": "react-tabby",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Sebastian Nordqvist <nordqvist.sebastian@gmail.com>",
   "license": "MIT",
   "main": "lib/index",
@@ -12,7 +12,7 @@
     "type": "git"
   },
   "scripts": {
-  	"start": "node examples/server.js",
+    "start": "node examples/server.js",
     "build": "npm run build-cjs && npm run build-es",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build-cjs": "rimraf lib && cross-env BABEL_ENV=cjs babel ./modules -d lib --ignore __tests__",
