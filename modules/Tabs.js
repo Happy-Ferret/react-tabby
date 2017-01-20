@@ -2,7 +2,7 @@ import React from 'react'
 
 const style = {
 	fontFamily: 'sans-serif',
-	webkitFontSmoothing: 'antialiased',
+	WebkitFontSmoothing: 'antialiased',
 	color: '#fff',
 }
 

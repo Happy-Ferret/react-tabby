@@ -1,30 +1,42 @@
 // Modules
 const { resolve } = require('path')
 const webpack = require('webpack')
+const fs = require('fs')
 
-const context = resolve(__dirname, 'src')
+const context = resolve(__dirname)
 
 // Webpack config
 module.exports = {
 	context,
-	entry: [
-		'react-hot-loader/patch',
-		'webpack-dev-server/client?http://localhost:8080',
-		'webpack/hot/only-dev-server',
-		'./index.js'
-	],
-	output: {
-		filename: 'bundle.js',
-		path: resolve(__dirname, 'dist'),
-		pathinfo: true,
+
+	node: {
+		__dirname: true,
 	},
+	
+	entry: fs.readdirSync(__dirname).reduce(function( entries, dir) {
+		if( fs.statSync(resolve(__dirname, dir)).isDirectory() ){
+			entries[dir] = resolve(__dirname, dir, 'app.js')
+		}
+
+		return entries
+	}, {}),
+	
+	output: {
+		path: resolve(__dirname, '__build__'),
+		filename: '[name].js',
+		chunkFilename: '[id].chunk.js',
+		publicPath: '/__build__/',
+	},
+	
 	devtool: 'inline-source-map',
+	
 	devServer: {
 		hot: true,
 		contentBase: resolve(__dirname, 'public'),
 		filename: 'bundle.js',
 		inline: true,
 	},
+
 	module: {
 		rules: [
 			{
@@ -32,37 +44,23 @@ module.exports = {
 				use: [
 					{
 						loader: 'babel-loader',
-						options: {
-							plugins: [
-								'transform-react-jsx',
-								[
-									'react-css-modules',
-									{
-										context,
-										webpackHotModuleReloading: true,
-									}
-								]
-							]
-						}
 					}
 				],
 				exclude: /node_modules/
-			},
-			{
-				test: /\.css$/,
-				use: [
-					{
-						loader: 'style-loader',
-					},
-					{
-						loader: 'css-loader?importLoader=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-					}
-				]
 			}
 		]
 	},
+
+	resolve: {
+		alias: {
+			'react-tabby': resolve(__dirname, '..', 'modules')
+		}
+	},
+
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NamedModulesPlugin(),
+		// new webpack.optimize.CommonsChunkPlugin('shared.js'),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+		})
 	]
 }

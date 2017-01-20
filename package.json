@@ -12,9 +12,11 @@
     "type": "git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack -p",
+  	"start": "node examples/server.js",
+    "build": "npm run build-cjs && npm run build-es",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build-cjs": "rimraf lib && cross-env BABEL_ENV=cjs babel ./modules -d lib --ignore __tests__",
+    "build-es": "rimraf es && cross-env BABEL_ENV=es babel ./modules -d es --ignore __tests__",
     "build-umd": "cross-env NODE_ENV=development webpack modules/index.js umd/ReactTabby.js"
   },
   "dependencies": {
@@ -35,17 +37,21 @@
     "babel-preset-stage-1": "^6.22.0",
     "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
+    "express": "^4.14.0",
+    "express-urlrewrite": "^1.2.0",
     "react-hot-loader": "3.0.0-beta.6",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
+    "webpack-dev-middleware": "^1.9.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^2.4.0"
   },
   "files": [
     "*.md",
     "index.js",
-    "umd"
+    "umd",
+    "lib"
   ],
   "keywords": [
     "react",

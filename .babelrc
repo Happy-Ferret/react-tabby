@@ -1,5 +1,4 @@
 {
-	
 	"presets": [
 		"stage-1",
 		"react"
@@ -10,6 +9,7 @@
 	],
 
 	"env": {
+		
 		"cjs": {
 			"presets": [
 				[ "es2015", {
@@ -21,11 +21,21 @@
 				"add-module-exports"
 			]
 		},
+
+		"es": {
+			"presets": [
+				[ "es2015", {
+					"loose": true,
+					"modules": false
+				}]
+			]
+		},
+
 		"development": {
 			"plugins": [
 				"react-hot-loader/babel"
 			]
 		}
-	}
 
+	}
 }
