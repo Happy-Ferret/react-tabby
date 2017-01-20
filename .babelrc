@@ -1,8 +1,31 @@
 {
+	
 	"presets": [
+		"stage-1",
 		"react"
 	],
+
 	"plugins": [
-		"react-hot-loader/babel"
-	]
+		"dev-expression"
+	],
+
+	"env": {
+		"cjs": {
+			"presets": [
+				[ "es2015", {
+					"loose": true,
+					"modules": "commonjs"
+				}]
+			],
+			"plugins": [
+				"add-module-exports"
+			]
+		},
+		"development": {
+			"plugins": [
+				"react-hot-loader/babel"
+			]
+		}
+	}
+
 }
