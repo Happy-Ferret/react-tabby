@@ -7,11 +7,23 @@ const style = {
 }
 
 const Tabs = ({
-	children
+	children,
+	borderColor,
+	backgroundColor,
 }) => {
+	const injectedChildren = []
+
+	children.map((child, i) => {
+		injectedChildren.push(React.cloneElement(child, {
+			key: i,
+			borderColor,
+			backgroundColor,
+		}))
+	})
+
 	return(
 		<div style={style}>
-			{children}
+			{injectedChildren}
 		</div>
 	)
 }

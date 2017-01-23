@@ -7,10 +7,24 @@ const App = ({
 	children
 }) => {
 	return(
-		<Tabs>
-			<TabGroup>
-				<Tab href="/simple">Example Tab 1</Tab>
-				<Tab href="/simple/example2">Example Tab 2</Tab>
+		<Tabs 
+			borderColor="black"
+			backgroundColor="#0097A7"
+		>
+			<TabGroup
+				hoverStyle={{
+				backgroundColor: 'yellow' }}
+			>
+				<Tab 
+					href="/simple"
+				>
+					Example Tab 1
+				</Tab>
+				<Tab 
+					href="/simple/example2"
+				>
+					Example Tab 2
+				</Tab>
 			</TabGroup>
 			<TabContent>
 				{children}
