@@ -1,6 +1,6 @@
 {
   "name": "react-tabby",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Sebastian Nordqvist <nordqvist.sebastian@gmail.com>",
   "license": "MIT",
   "main": "lib/index",
