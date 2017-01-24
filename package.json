@@ -19,15 +19,15 @@
     "build-es": "rimraf es && cross-env BABEL_ENV=es babel ./modules -d es --ignore __tests__",
     "build-umd": "cross-env NODE_ENV=development webpack modules/index.js umd/ReactTabby.js"
   },
-  "dependencies": {
-    "radium": "^0.18.1",
+  "peerDependencies": {
+  	"radium": "^0.18.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
-    "react-router": "^3.0.2",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "react-router": "^3.0.2"
   },
   "devDependencies": {
+  	"react-dom": "^15.4.2",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-add-module-exports": "^0.2.1",
